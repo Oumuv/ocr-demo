@@ -32,7 +32,6 @@ public class UploadImag {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(imgText);
         return imgText;
 
     }

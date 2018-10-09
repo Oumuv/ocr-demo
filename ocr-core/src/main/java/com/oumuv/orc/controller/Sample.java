@@ -34,9 +34,9 @@ public class Sample {
 //        System.setProperty("aip.log4j.conf", "path/to/your/log4j.properties");
 
         // 调用接口
-        String path = "C:\\Users\\bonoon\\Desktop\\556891155837210784.jpg";
-        JSONObject res = client.basicGeneral(path, new HashMap<String, String>());
-        System.out.println(res.toString(2));
+//        String path = "C:\\Users\\bonoon\\Desktop\\556891155837210784.jpg";
+//        JSONObject res = client.basicGeneral(path, new HashMap<String, String>());
+        System.out.println("中文试试");
 
     }
 

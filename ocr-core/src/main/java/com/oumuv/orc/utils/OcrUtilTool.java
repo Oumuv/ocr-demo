@@ -1,6 +1,7 @@
 package com.oumuv.orc.utils;
 
 import com.baidu.aip.ocr.AipOcr;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,9 +17,9 @@ import java.util.HashMap;
 public class OcrUtilTool {
 
     //设置APPID/AK/SK
-    public static final String APP_ID = "14377502";
-    public static final String API_KEY = "p9eH47qcXj8GknZdGmw1Ib9p";
-    public static final String SECRET_KEY = "sKfRgSiZr3F1t297IrHjOmCMe37GVRDG";
+    public static final String APP_ID = "14383786";
+    public static final String API_KEY = "5s4u6bnyedvBlKwPshZLDHkX";
+    public static final String SECRET_KEY = "bcwmgRjTtNe4V1Rp9u9g4nORWfNSih3P";
     private static AipOcr client = new AipOcr(APP_ID, API_KEY, SECRET_KEY);
 
     public static String getImgText(MultipartFile file) throws IOException {
@@ -31,6 +32,9 @@ public class OcrUtilTool {
 
         byte[] bytes = file.getBytes();
         JSONObject jsonObject = client.basicAccurateGeneral(bytes,options);
+        long log_id = jsonObject.getLong("log_id");
+        JSONArray jsonArray = jsonObject.getJSONArray("words_result");
+        int result_count = jsonObject.getInt("words_result_num");
         return jsonObject.toString();
     }
 }
