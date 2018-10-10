@@ -1,6 +1,7 @@
 package com.oumuv.orc.controller;
 
 import com.oumuv.orc.utils.OcrUtilTool;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,17 +23,16 @@ import java.io.IOException;
 public class UploadImag {
 
     @ResponseBody
-    @RequestMapping(value = "/upload.do",method = RequestMethod.POST,produces="text/html;charset=UTF-8")
-    public String upload(MultipartHttpServletRequest request) {
+    @RequestMapping(value = "/upload.do", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public Object upload(MultipartHttpServletRequest request) {
         MultipartFile file = request.getFile("file");
-
-        String imgText = null;
         try {
-            imgText = OcrUtilTool.getImgText(file);
+            JSONObject jsonObject = OcrUtilTool.basicAccurateGeneral(file.getBytes(), null);
+            return jsonObject;
         } catch (IOException e) {
-            e.printStackTrace();
+            return e;
         }
-        return imgText;
+
 
     }
 }
